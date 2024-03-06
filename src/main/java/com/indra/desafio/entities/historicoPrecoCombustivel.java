@@ -1,10 +1,17 @@
 package com.indra.desafio.entities;
 
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
-public class historicoPrecoCombustivel {
+@Entity
+@Table(name = "tb_historico")
+public class historicoPrecoCombustivel implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String Municipio;
     private String Regiao;
