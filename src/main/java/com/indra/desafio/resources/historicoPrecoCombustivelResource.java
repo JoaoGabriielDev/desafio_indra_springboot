@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/historico")
+@RequestMapping(value = "/historicos")
 public class historicoPrecoCombustivelResource {
 
     @Autowired

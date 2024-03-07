@@ -38,14 +38,6 @@ public class historicoPrecoCombustivelService {
     }
 
     private void updateData(historicoPrecoCombustivel entity, historicoPrecoCombustivel obj) {
-        entity.setMunicipio(obj.getMunicipio());
-        entity.setRegiao(obj.getRegiao());
         entity.setDistribuidor(obj.getDistribuidor());
-        entity.setDataColeta(obj.getDataColeta());
-        entity.setTipoCombustivel(obj.getTipoCombustivel());
-        entity.setBandeira(obj.getBandeira());
-        entity.setValorCompra(obj.getValorCompra());
-        entity.setValorVenda(obj.getValorVenda());
     }
-
 }
