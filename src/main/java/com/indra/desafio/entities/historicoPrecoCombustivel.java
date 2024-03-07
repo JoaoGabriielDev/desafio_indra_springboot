@@ -13,33 +13,41 @@ public class historicoPrecoCombustivel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String Distribuidor;
+    private String distribuidor;
 
-    @OneToMany(mappedBy = "historico")
-    private List<PrecoCombustivel> PrecoCombustivel;
+    @ManyToOne
+    @JoinColumn(name = "precosCombustivel_id")
+    private PrecoCombustivel precosCombustivel;
 
     public historicoPrecoCombustivel(){
 
     }
-    public historicoPrecoCombustivel(Long id, String distribuidor) {
+    public historicoPrecoCombustivel(Long id, String distribuidor, PrecoCombustivel precosCombustivel) {
         this.id = id;
-        Distribuidor = distribuidor;
+        this.distribuidor = distribuidor;
+        this.precosCombustivel = precosCombustivel;
     }
 
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getDistribuidor() {
-        return Distribuidor;
+        return distribuidor;
     }
 
     public void setDistribuidor(String distribuidor) {
-        Distribuidor = distribuidor;
+        this.distribuidor = distribuidor;
+    }
+
+    public PrecoCombustivel getPrecosCombustivel() {
+        return precosCombustivel;
+    }
+
+    public void setPrecosCombustivel(PrecoCombustivel precosCombustivel) {
+        this.precosCombustivel = precosCombustivel;
     }
 
     @Override

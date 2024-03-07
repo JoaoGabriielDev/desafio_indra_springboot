@@ -36,15 +36,14 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1, u2));
 
-        historicoPrecoCombustivel h1 = new historicoPrecoCombustivel(null, "A");
-        historicoPrecoCombustivel h2 = new historicoPrecoCombustivel(null, "B");
-
-        historicoPrecoCombustivelRepository.saveAll(Arrays.asList(h1, h2));
-
         PrecoCombustivel p1 = new PrecoCombustivel(null, "Joao Pessoa", "Gasolina", Instant.parse("2024-03-06T15:21:22Z"), 4.50);
         PrecoCombustivel p2 = new PrecoCombustivel(null, "Campina Grande", "Alcool", Instant.parse("2024-02-10T10:20:10Z"), 2.50);
 
-        precoCombustivelRepository.saveAll(Arrays.asList(p1));
+        precoCombustivelRepository.saveAll(Arrays.asList(p1, p2));
 
+        historicoPrecoCombustivel h1 = new historicoPrecoCombustivel(null, "A", p1);
+        historicoPrecoCombustivel h2 = new historicoPrecoCombustivel(null, "B", p2);
+
+        historicoPrecoCombustivelRepository.saveAll(Arrays.asList(h1, h2));
     }
 }

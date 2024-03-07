@@ -1,5 +1,6 @@
 package com.indra.desafio.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.Instant;
@@ -7,6 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_PrecoCombustivel")
+@JsonIgnoreProperties("historico")
 public class PrecoCombustivel {
 
     @Id
@@ -16,8 +18,8 @@ public class PrecoCombustivel {
     private String tipoCombustivel;
     private Instant dataColeta;
     private Double preco;
-
     @ManyToOne
+    @JoinColumn(name = "historico_id")
     private historicoPrecoCombustivel historico;
 
     public PrecoCombustivel(){
@@ -69,6 +71,14 @@ public class PrecoCombustivel {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public historicoPrecoCombustivel getHistorico() {
+        return historico;
+    }
+
+    public void setHistorico(historicoPrecoCombustivel historico) {
+        this.historico = historico;
     }
 
     @Override
