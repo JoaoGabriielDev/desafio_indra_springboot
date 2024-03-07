@@ -1,8 +1,12 @@
 package com.indra.desafio.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +21,10 @@ public class User implements Serializable {
     private String telefone;
     private String senha;
 
+    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
+    private List<historicoPrecoCombustivel> historicos;
+
     public User(){
 
     }
@@ -26,6 +34,7 @@ public class User implements Serializable {
         this.email = email;
         this.telefone = telefone;
         this.senha = senha;
+        this.historicos = new ArrayList<>();
     }
 
     public Long getId() {

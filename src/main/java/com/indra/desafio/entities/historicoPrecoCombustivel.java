@@ -1,5 +1,6 @@
 package com.indra.desafio.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -16,15 +17,21 @@ public class historicoPrecoCombustivel implements Serializable {
     private String distribuidor;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonBackReference
+    private User user;
+
+    @ManyToOne
     @JoinColumn(name = "precosCombustivel_id")
     private PrecoCombustivel precosCombustivel;
 
     public historicoPrecoCombustivel(){
 
     }
-    public historicoPrecoCombustivel(Long id, String distribuidor, PrecoCombustivel precosCombustivel) {
+    public historicoPrecoCombustivel(Long id, String distribuidor, User user, PrecoCombustivel precosCombustivel) {
         this.id = id;
         this.distribuidor = distribuidor;
+        this.user = user;
         this.precosCombustivel = precosCombustivel;
     }
 
