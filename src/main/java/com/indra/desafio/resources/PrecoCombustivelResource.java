@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/preco-combustivel")
@@ -30,7 +32,6 @@ public class PrecoCombustivelResource {
         PrecoCombustivel obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
-    @Operation(summary = "Calcula a média de preço de combustível por município")
     @GetMapping("/media-por-municipio")
     public ResponseEntity<Double> obterMediaPrecoPorMunicipio(@RequestParam String municipio) {
         double mediaPreco = service.calcularMediaPrecoPorMunicipio(municipio);
@@ -40,5 +41,10 @@ public class PrecoCombustivelResource {
     public ResponseEntity<List<PrecoCombustivel>> obterPrecoPorRegiao(@RequestParam String regiao){
         List<PrecoCombustivel> precos = service.obterPrecosPorRegiao(regiao);
         return ResponseEntity.ok(precos);
+    }
+    @GetMapping("/agrupado-por-data-coleta")
+    public ResponseEntity<Map<Instant, List<PrecoCombustivel>>> obterPrecosAgrupadosPorDataColeta() {
+        Map<Instant, List<PrecoCombustivel>> precosAgrupados = service.obterPrecosAgrupadosPorDataColeta();
+        return ResponseEntity.ok(precosAgrupados);
     }
 }

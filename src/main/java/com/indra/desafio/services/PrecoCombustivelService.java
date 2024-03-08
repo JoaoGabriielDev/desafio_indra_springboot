@@ -3,11 +3,13 @@ package com.indra.desafio.services;
 import com.indra.desafio.entities.PrecoCombustivel;
 import com.indra.desafio.repositories.PrecoCombustivelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PrecoCombustivelService {
@@ -35,5 +37,11 @@ public class PrecoCombustivelService {
 
     public List<PrecoCombustivel> obterPrecosPorRegiao(String regiao){
         return repository.findByRegiao(regiao);
+    }
+
+    public Map<Instant, List<PrecoCombustivel>> obterPrecosAgrupadosPorDataColeta() {
+        List<PrecoCombustivel> precos = repository.findAll();
+        return precos.stream()
+                .collect(Collectors.groupingBy(PrecoCombustivel::getDataColeta));
     }
 }
