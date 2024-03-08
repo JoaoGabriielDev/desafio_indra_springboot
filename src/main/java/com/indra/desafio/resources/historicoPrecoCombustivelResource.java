@@ -9,6 +9,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/historicos")
@@ -16,6 +17,10 @@ public class historicoPrecoCombustivelResource {
 
     @Autowired
     private historicoPrecoCombustivelService service;
+
+    public historicoPrecoCombustivelResource(historicoPrecoCombustivelService service){
+        this.service = service;
+    }
 
     @GetMapping
     public ResponseEntity<List<historicoPrecoCombustivel>> findAll(){
@@ -38,10 +43,15 @@ public class historicoPrecoCombustivelResource {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-
     @PutMapping(value = "/{id}")
     public ResponseEntity<historicoPrecoCombustivel> update(@PathVariable Long id, @RequestBody historicoPrecoCombustivel obj){
         obj = service.update(id, obj);
         return ResponseEntity.ok().body(obj);
+    }
+
+    @GetMapping("/agrupado-por-distribuidora")
+    public ResponseEntity<Map<String, List<historicoPrecoCombustivel>>> getHistoricoAgrupadoPorDistribuidora() {
+        Map<String, List<historicoPrecoCombustivel>> historicoAgrupado = service.getHistoricoAgrupadoPorDistribuidora();
+        return ResponseEntity.ok(historicoAgrupado);
     }
 }

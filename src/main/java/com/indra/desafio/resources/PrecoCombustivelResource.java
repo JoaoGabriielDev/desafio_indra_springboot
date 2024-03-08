@@ -30,14 +30,12 @@ public class PrecoCombustivelResource {
         PrecoCombustivel obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
-
     @Operation(summary = "Calcula a média de preço de combustível por município")
     @GetMapping("/media-por-municipio")
     public ResponseEntity<Double> obterMediaPrecoPorMunicipio(@RequestParam String municipio) {
         double mediaPreco = service.calcularMediaPrecoPorMunicipio(municipio);
         return ResponseEntity.ok(mediaPreco);
     }
-
     @GetMapping(value = "/por-regiao")
     public ResponseEntity<List<PrecoCombustivel>> obterPrecoPorRegiao(@RequestParam String regiao){
         List<PrecoCombustivel> precos = service.obterPrecosPorRegiao(regiao);

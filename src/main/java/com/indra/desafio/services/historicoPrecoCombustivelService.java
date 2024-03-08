@@ -6,13 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class historicoPrecoCombustivelService {
 
     @Autowired
     private HistoricoPrecoCombustivelRepository repository;
+
+    public historicoPrecoCombustivelService (HistoricoPrecoCombustivelRepository repository){
+        this.repository = repository;
+    }
 
     public List<historicoPrecoCombustivel> findAll(){
         return repository.findAll();
@@ -40,4 +46,11 @@ public class historicoPrecoCombustivelService {
     private void updateData(historicoPrecoCombustivel entity, historicoPrecoCombustivel obj) {
         entity.setDistribuidor(obj.getDistribuidor());
     }
+
+    public Map<String, List<historicoPrecoCombustivel>> getHistoricoAgrupadoPorDistribuidora() {
+        List<historicoPrecoCombustivel> historicoPrecos = repository.findAll();
+        return historicoPrecos.stream()
+                .collect(Collectors.groupingBy(historicoPrecoCombustivel::getDistribuidor));
+    }
+
 }
