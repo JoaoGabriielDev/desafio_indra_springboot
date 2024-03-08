@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.HashMap;
 
 @Service
 public class PrecoCombustivelService {
@@ -31,7 +32,7 @@ public class PrecoCombustivelService {
 
     public double calcularMediaPrecoPorMunicipio(String municipio){
         List<PrecoCombustivel> precos = repository.findByMunicipio(municipio);
-        double soma = precos.stream().mapToDouble(PrecoCombustivel::getPreco).sum();
+        double soma = precos.stream().mapToDouble(PrecoCombustivel::getValorVenda).sum();
         return soma / precos.size();
     }
 
@@ -43,5 +44,27 @@ public class PrecoCombustivelService {
         List<PrecoCombustivel> precos = repository.findAll();
         return precos.stream()
                 .collect(Collectors.groupingBy(PrecoCombustivel::getDataColeta));
+    }
+
+    public Map<String, Double> obterMediaCompraVendaPorMunicipio(String municipio) {
+        List<PrecoCombustivel> precos = repository.findByMunicipio(municipio);
+        double mediaCompra = precos.stream().mapToDouble(PrecoCombustivel::getValorCompra).average().orElse(0);
+        double mediaVenda = precos.stream().mapToDouble(PrecoCombustivel::getValorVenda).average().orElse(0);
+        Map<String, Double> mediaPrecos = new HashMap<>();
+        mediaPrecos.put("mediaCompra", mediaCompra);
+        mediaPrecos.put("mediaVenda", mediaVenda);
+
+        return mediaPrecos;
+    }
+
+    public Map<String, Double> obterMediaPrecosPorBandeira(String bandeira) {
+        List<PrecoCombustivel> precos = repository.findByBandeira(bandeira);
+        double mediaCompra = precos.stream().mapToDouble(PrecoCombustivel::getValorCompra).average().orElse(0);
+        double mediaVenda = precos.stream().mapToDouble(PrecoCombustivel::getValorVenda).average().orElse(0);
+        Map<String, Double> mediaPrecos = new HashMap<>();
+        mediaPrecos.put("mediaCompra", mediaCompra);
+        mediaPrecos.put("mediaVenda", mediaVenda);
+
+        return mediaPrecos;
     }
 }

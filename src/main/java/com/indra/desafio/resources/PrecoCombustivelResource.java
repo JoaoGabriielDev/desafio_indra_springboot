@@ -47,4 +47,14 @@ public class PrecoCombustivelResource {
         Map<Instant, List<PrecoCombustivel>> precosAgrupados = service.obterPrecosAgrupadosPorDataColeta();
         return ResponseEntity.ok(precosAgrupados);
     }
+    @GetMapping("/media-compra-venda-por-municipio")
+    public ResponseEntity<Map<String, Double>> obterMediaCompraVendaPorMunicipio(@RequestParam String municipio) {
+        Map<String, Double> mediaPrecos = service.obterMediaCompraVendaPorMunicipio(municipio);
+        return ResponseEntity.ok(mediaPrecos);
+    }
+    @GetMapping("/media-por-bandeira")
+    public ResponseEntity<Map<String, Double>> obterMediaPrecosPorBandeira(@RequestParam String bandeira) {
+        Map<String, Double> mediaPrecos = service.obterMediaPrecosPorBandeira(bandeira);
+        return ResponseEntity.ok(mediaPrecos);
+    }
 }

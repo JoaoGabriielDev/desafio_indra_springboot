@@ -36,10 +36,10 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1, u2));
 
-        PrecoCombustivel p1 = new PrecoCombustivel(null, "Joao Pessoa", "Nordeste" , "Gasolina", Instant.parse("2024-03-06T15:21:22Z"), 4.50);
-        PrecoCombustivel p2 = new PrecoCombustivel(null, "Sao Paulo", "Suldeste", "Alcool", Instant.parse("2024-02-10T10:20:10Z"), 2.50);
-        PrecoCombustivel p3 = new PrecoCombustivel(null, "Joao Pessoa", "Nordeste", "Alcool", Instant.parse("2024-02-10T12:00:10Z"), 2.50);
-        PrecoCombustivel p4 = new PrecoCombustivel(null, "Joao Pessoa", "Nordeste", "Gasolina", Instant.parse("2024-03-10T12:00:10Z"), 5.50);
+        PrecoCombustivel p1 = new PrecoCombustivel(null, "Joao Pessoa", "Nordeste" , "Shell", "Gasolina", Instant.parse("2024-03-06T15:21:22Z"), 2.00, 4.00 );
+        PrecoCombustivel p2 = new PrecoCombustivel(null, "Sao Paulo", "Suldeste", "Petrobras", "Alcool", Instant.parse("2024-02-10T10:20:10Z"), 4.00, 6.00);
+        PrecoCombustivel p3 = new PrecoCombustivel(null, "Joao Pessoa", "Nordeste", "Shell",  "Alcool", Instant.parse("2024-02-10T12:00:10Z"), 6.00, 8.00);
+        PrecoCombustivel p4 = new PrecoCombustivel(null, "Joao Pessoa", "Nordeste", "Shell", "Gasolina", Instant.parse("2024-03-10T12:00:10Z"), 2.00, 6.00);
 
         precoCombustivelRepository.saveAll(Arrays.asList(p1, p2, p3, p4));
 
