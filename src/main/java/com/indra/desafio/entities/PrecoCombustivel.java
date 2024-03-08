@@ -15,6 +15,7 @@ public class PrecoCombustivel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String municipio;
+    private String regiao;
     private String tipoCombustivel;
     private Instant dataColeta;
     private Double preco;
@@ -25,9 +26,10 @@ public class PrecoCombustivel {
     public PrecoCombustivel(){
 
     }
-    public PrecoCombustivel(Long id, String municipio, String tipoCombustivel, Instant dataColeta, Double preco) {
+    public PrecoCombustivel(Long id, String municipio, String regiao, String tipoCombustivel, Instant dataColeta, Double preco) {
         this.id = id;
         this.municipio = municipio;
+        this.regiao = regiao;
         this.tipoCombustivel = tipoCombustivel;
         this.dataColeta = dataColeta;
         this.preco = preco;
@@ -47,6 +49,14 @@ public class PrecoCombustivel {
 
     public void setMunicipio(String municipio) {
         this.municipio = municipio;
+    }
+
+    public String getRegiao() {
+        return regiao;
+    }
+
+    public void setRegiao(String regiao) {
+        this.regiao = regiao;
     }
 
     public String getTipoCombustivel() {

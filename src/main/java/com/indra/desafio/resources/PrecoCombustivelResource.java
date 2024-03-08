@@ -38,4 +38,9 @@ public class PrecoCombustivelResource {
         return ResponseEntity.ok(mediaPreco);
     }
 
+    @GetMapping(value = "/por-regiao")
+    public ResponseEntity<List<PrecoCombustivel>> obterPrecoPorRegiao(@RequestParam String regiao){
+        List<PrecoCombustivel> precos = service.obterPrecosPorRegiao(regiao);
+        return ResponseEntity.ok(precos);
+    }
 }

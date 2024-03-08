@@ -33,4 +33,7 @@ public class PrecoCombustivelService {
         return soma / precos.size();
     }
 
+    public List<PrecoCombustivel> obterPrecosPorRegiao(String regiao){
+        return repository.findByRegiao(regiao);
+    }
 }
