@@ -17,6 +17,7 @@ public class UserResource {
     @Autowired
     private UserService service;
 
+    @CrossOrigin(origins = {"http://localhost:8080", "http://localhost:4200"})
     @GetMapping
     public ResponseEntity<List<User>> findAll(){
         List<User> list = service.findAll();

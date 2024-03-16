@@ -21,10 +21,6 @@ public class User implements Serializable {
     private String telefone;
     private String senha;
 
-    @OneToMany(mappedBy = "user")
-    @JsonManagedReference
-    private List<historicoPrecoCombustivel> historicos;
-
     public User(){
 
     }
@@ -34,7 +30,6 @@ public class User implements Serializable {
         this.email = email;
         this.telefone = telefone;
         this.senha = senha;
-        this.historicos = new ArrayList<>();
     }
 
     public Long getId() {
