@@ -12,4 +12,6 @@ public interface PrecoCombustivelRepository extends JpaRepository<PrecoCombustiv
     List<PrecoCombustivel> findByRegiao(String regiao);
 
     List<PrecoCombustivel> findByBandeira(String bandeira);
+    List<PrecoCombustivel> findAll();
+
 }

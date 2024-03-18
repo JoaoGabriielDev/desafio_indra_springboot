@@ -23,11 +23,13 @@ public class UserResource {
         List<User> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
+    @CrossOrigin(origins = {"http://localhost:8080", "http://localhost:4200"})
     @GetMapping(value = "/{id}")
     public ResponseEntity<User> findById(@PathVariable Long id){
         User obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
+    @CrossOrigin(origins = {"http://localhost:8080", "http://localhost:4200"})
     @PostMapping
     public ResponseEntity<User> insert(@RequestBody User obj){
         obj = service.insert(obj);
@@ -35,11 +37,13 @@ public class UserResource {
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }
+    @CrossOrigin(origins = {"http://localhost:8080", "http://localhost:4200"})
     @DeleteMapping(value = "{id}")
     public ResponseEntity<User> delete(@PathVariable Long id){
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+    @CrossOrigin(origins = {"http://localhost:8080", "http://localhost:4200"})
     @PutMapping(value = "/{id}")
     public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj){
         obj = service.update(id, obj);

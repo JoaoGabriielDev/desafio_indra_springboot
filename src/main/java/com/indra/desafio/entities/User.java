@@ -1,12 +1,7 @@
 package com.indra.desafio.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -67,7 +62,6 @@ public class User implements Serializable {
     public String getSenha() {
         return senha;
     }
-
     public void setSenha(String senha) {
         this.senha = senha;
     }
@@ -79,7 +73,6 @@ public class User implements Serializable {
         User user = (User) o;
         return Objects.equals(id, user.id);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id);

@@ -2,18 +2,17 @@ package com.indra.desafio.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-
 import java.time.Instant;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tb_PrecoCombustivel")
-@JsonIgnoreProperties("historico")
 public class PrecoCombustivel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String distribuidor;
     private String municipio;
     private String regiao;
     private String bandeira;
@@ -22,14 +21,10 @@ public class PrecoCombustivel {
     private Double valorCompra;
     private Double valorVenda;
 
-    @ManyToOne
-    @JoinColumn(name = "historico_id")
-    private historicoPrecoCombustivel historico;
-
     public PrecoCombustivel(){
 
     }
-    public PrecoCombustivel(Long id, String municipio, String regiao, String bandeira, String tipoCombustivel, Instant dataColeta, Double valorCompra, Double valorVenda) {
+    public PrecoCombustivel(Long id, String distribuidor, String municipio, String regiao, String bandeira, String tipoCombustivel, Instant dataColeta, Double valorCompra, Double valorVenda) {
         this.id = id;
         this.municipio = municipio;
         this.regiao = regiao;
@@ -38,6 +33,7 @@ public class PrecoCombustivel {
         this.valorCompra = valorCompra;
         this.valorVenda = valorVenda;
         this.bandeira = bandeira;
+        this.distribuidor = distribuidor;
     }
 
     public Long getId() {
@@ -45,6 +41,12 @@ public class PrecoCombustivel {
     }
     public void setId(Long id) {
         this.id = id;
+    }
+    public String getDistribuidor() {
+        return distribuidor;
+    }
+    public void setDistribuidor(String distribuidor) {
+        this.distribuidor = distribuidor;
     }
     public String getMunicipio() {
         return municipio;
@@ -61,7 +63,6 @@ public class PrecoCombustivel {
     public String getBandeira() {
         return bandeira;
     }
-
     public void setBandeira(String bandeira) {
         this.bandeira = bandeira;
     }
@@ -80,7 +81,6 @@ public class PrecoCombustivel {
     public Double getValorCompra() {
         return valorCompra;
     }
-
     public void setValorCompra(Double valorCompra) {
         this.valorCompra = valorCompra;
     }
@@ -90,13 +90,6 @@ public class PrecoCombustivel {
     public void setValorVenda(Double valorVenda) {
         this.valorVenda = valorVenda;
     }
-    public historicoPrecoCombustivel getHistorico() {
-        return historico;
-    }
-    public void setHistorico(historicoPrecoCombustivel historico) {
-        this.historico = historico;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -104,9 +97,9 @@ public class PrecoCombustivel {
         PrecoCombustivel that = (PrecoCombustivel) o;
         return Objects.equals(id, that.id);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }

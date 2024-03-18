@@ -46,6 +46,15 @@ public class PrecoCombustivelService {
                 .collect(Collectors.groupingBy(PrecoCombustivel::getDataColeta));
     }
 
+    public Map<String, List<PrecoCombustivel>> getAgrupadoPorDistribuidor() {
+        List<PrecoCombustivel> historico = repository.findAll();
+
+        Map<String, List<PrecoCombustivel>> historicoAgrupado = historico.stream()
+                .collect(Collectors.groupingBy(PrecoCombustivel::getDistribuidor));
+
+        return historicoAgrupado;
+    }
+
     public Map<String, Double> obterMediaCompraVendaPorMunicipio(String municipio) {
         List<PrecoCombustivel> precos = repository.findByMunicipio(municipio);
         double mediaCompra = precos.stream().mapToDouble(PrecoCombustivel::getValorCompra).average().orElse(0);
