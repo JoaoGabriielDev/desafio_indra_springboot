@@ -1,6 +1,5 @@
 package com.indra.desafio.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.time.Instant;
 import java.util.Objects;

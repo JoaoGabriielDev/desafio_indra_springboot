@@ -1,6 +1,7 @@
 package com.indra.desafio.services;
 
 import com.indra.desafio.entities.PrecoCombustivel;
+import com.indra.desafio.entities.User;
 import com.indra.desafio.repositories.PrecoCombustivelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,31 @@ public class PrecoCombustivelService {
     public PrecoCombustivel findById(Long id){
         Optional<PrecoCombustivel> obj = repository.findById(id);
         return obj.get();
+    }
+
+    public PrecoCombustivel insert(PrecoCombustivel obj){
+        return repository.save(obj);
+    }
+
+    public void delete(Long id){
+        repository.deleteById(id);
+    }
+
+    public PrecoCombustivel update(Long id, PrecoCombustivel obj){
+        PrecoCombustivel entity = repository.getReferenceById(id);
+        updateData(entity, obj);
+        return repository.save(entity);
+    }
+
+    private void updateData(PrecoCombustivel entity, PrecoCombustivel obj) {
+        entity.setDistribuidor(obj.getDistribuidor());
+        entity.setMunicipio(obj.getMunicipio());
+        entity.setRegiao(obj.getRegiao());
+        entity.setBandeira(obj.getBandeira());
+        entity.setTipoCombustivel(obj.getTipoCombustivel());
+        entity.setDataColeta(obj.getDataColeta());
+        entity.setValorCompra(obj.getValorCompra());
+        entity.setValorVenda(obj.getValorVenda());
     }
 
     public double calcularMediaPrecoPorMunicipio(String municipio){
@@ -76,4 +102,5 @@ public class PrecoCombustivelService {
 
         return mediaPrecos;
     }
+
 }
