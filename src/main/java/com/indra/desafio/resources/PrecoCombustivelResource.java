@@ -70,7 +70,7 @@ public class PrecoCombustivelResource {
 
     @CrossOrigin(origins = {"http://localhost:8080", "http://localhost:4200"})
     @GetMapping(value = "/por-regiao")
-    public ResponseEntity<List<PrecoCombustivel>> obterPrecoPorRegiao(@RequestParam String regiao){
+    public ResponseEntity<List<PrecoCombustivel>> obterPrecoPorRegiao(@RequestParam String regiao) {
         List<PrecoCombustivel> precos = service.obterPrecosPorRegiao(regiao);
         return ResponseEntity.ok(precos);
     }
@@ -95,7 +95,6 @@ public class PrecoCombustivelResource {
         Map<String, Double> mediaPrecos = service.obterMediaCompraVendaPorMunicipio(municipio);
         return ResponseEntity.ok(mediaPrecos);
     }
-
     @CrossOrigin(origins = {"http://localhost:8080", "http://localhost:4200"})
     @GetMapping("/media-por-bandeira")
     public ResponseEntity<Map<String, Double>> obterMediaPrecosPorBandeira(@RequestParam String bandeira) {

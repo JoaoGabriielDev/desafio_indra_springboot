@@ -28,16 +28,19 @@ public class TestConfig implements CommandLineRunner {
 
         User u1 = new User(null, "Maria Brown", "mariabrown@gmail.com", "987809368", "123456");
         User u2 = new User(null, "Alex Green", "alexgreen@gmail.com", "947204835", "123456");
+        User u3 = new User(null, "Luiz Brown", "luizbrown@gmail.com", "947204835", "123456");
+        User u4 = new User(null, "Luiza Sousa", "luizasousa@gmail.com", "947204835", "123456");
+        User u5 = new User(null, "Leticia Freire", "leticiafreire@gmail.com", "947204835", "123456");
 
         userRepository.saveAll(Arrays.asList(u1, u2));
 
         PrecoCombustivel p1 = new PrecoCombustivel(null, "A", "Joao Pessoa", "Nordeste" , "Shell", "Gasolina", Instant.parse("2024-03-06T15:21:22Z"), 2.50, 4.00 );
-        PrecoCombustivel p2 = new PrecoCombustivel(null, "B", "Sao Paulo", "Suldeste", "Petrobras", "Alcool", Instant.parse("2024-02-10T10:20:10Z"), 4.50, 6.00);
-        PrecoCombustivel p3 = new PrecoCombustivel(null, "A", "Joao Pessoa", "Nordeste", "Shell",  "Alcool", Instant.parse("2024-02-10T12:00:10Z"), 6.00, 8.00);
-        PrecoCombustivel p4 = new PrecoCombustivel(null, "A", "Joao Pessoa", "Nordeste", "Shell", "Gasolina", Instant.parse("2024-03-10T12:00:10Z"), 2.00, 6.00);
-        PrecoCombustivel p5 = new PrecoCombustivel(null, "B", "Sao Paulo", "Suldeste", "Petrobras", "Gasolina", Instant.parse("2024-02-10T10:20:10Z"), 6.00, 8.00);
+        PrecoCombustivel p2 = new PrecoCombustivel(null, "B", "Sao Paulo", "Suldeste", "Petrobras", "Alcool", Instant.parse("2024-02-10T16:00:15Z"), 4.50, 6.00);
+        PrecoCombustivel p3 = new PrecoCombustivel(null, "C", "Joao Pessoa", "Nordeste", "Shell",  "Alcool", Instant.parse("2024-02-10T12:00:40Z"), 6.00, 8.00);
+        PrecoCombustivel p4 = new PrecoCombustivel(null, "D", "Joao Pessoa", "Nordeste", "Shell", "Gasolina", Instant.parse("2024-03-10T13:40:10Z"), 2.00, 6.00);
+        PrecoCombustivel p5 = new PrecoCombustivel(null, "E", "Sao Paulo", "Suldeste", "Petrobras", "Gasolina", Instant.parse("2024-02-10T10:20:10Z"), 6.00, 8.00);
 
-        precoCombustivelRepository.saveAll(Arrays.asList(p1, p2, p3, p4));
+        precoCombustivelRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
     }
 }
